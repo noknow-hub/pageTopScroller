@@ -14,9 +14,11 @@
 //         That's it! It is very simple.
 //
 //     2. (Option) There are some options. Have a look the option variable.
+//         You can set a value to them.
+//         
 //         IMG_SRC: The path or URL of the image. When you set it, will display it.
-//         ANIMATE_DURATION: The duration of the scroll animation.
-//         ANIMATE_INCREMENT: The increment of the scroll animation.
+//         ANIMATE_DURATION: The duration of the scroll animation (milliseconds).
+//         ANIMATE_INCREMENT: The increment of the scroll animation (milliseconds).
 //
 //////////////////////////////////////////////////////////////////////
 document.addEventListener('DOMContentLoaded', function() {
@@ -34,7 +36,6 @@ document.addEventListener('DOMContentLoaded', function() {
             this.PARENT_BOX;
             this.PARENT_BOX_ID = 'ptsBox';
             this.IMG_SRC = null;
-            this.A_HREF = null;
             this.ANIMATE_DURATION = 1000;
             this.ANIMATE_INCREMENT = 30;
             
@@ -82,6 +83,10 @@ document.addEventListener('DOMContentLoaded', function() {
         
         //////////////////////////////////////////////////
         // easeInOutQuad
+        // @param t: current time
+        // @param b: begin position
+        // @param c: change from end to begin position
+        // @param d: duration
         //////////////////////////////////////////////////
         easeInOutQuad(t, b, c, d) {
             t /= d / 2;
@@ -125,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     const val = this.easeInOutQuad(currentTime, start, change, duration);
                     window.scrollTo(0, val);
                     if (currentTime < duration) {
-                        setTimeout(animateScroll, increment);
+                        setTimeout(animateScroll, 30);
                     } else {
                         window.scrollTo(0, 0);
                     }
